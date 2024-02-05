@@ -1,0 +1,74 @@
+﻿<!DOCTYPE html>
+<html>
+
+<head>
+    <style>
+        body,
+        html {
+            margin: 0;
+            padding: 0;
+            overflow: hidden;
+        }
+    </style>
+</head>
+
+<body>
+    <script src="https://www.youtube.com/iframe_api"></script>
+
+    <div id="player"></div>
+
+    <script>
+        // Lista de IDs de vídeos
+        var videoIds = [
+            'kukM7N_pV1U',
+            'pp29W7H7wmM',
+            '481PuFmA4Lg',
+            'WlSslFEs9Zk',
+            'vtIrC1Ks1Sk',
+            'PkUelPc8Ffo',
+            'GeJrshQgOWU',
+            'AOTm-76iInc',
+            'hqmQN1rUOAc',
+            'EVLYPV4Hvzc',
+            'zHEO3_qCglA',
+            'Jt9EzValpHs',
+            'XvfU1OxsxTQ',
+            'cmHoauilYzk',
+            'PDu_ZUAbHKU',
+            '7gMcf-xfqw8',
+            'Zfa6TZfoRmg',
+            'l_Y5x_Ff85c',
+        ];
+
+        function getRandomVideoId() {
+            // Gera um índice aleatório para escolher um vídeo da lista
+            var randomIndex = Math.floor(Math.random() * videoIds.length);
+            return videoIds[randomIndex];
+        }
+
+        function onYouTubeIframeAPIReady() {
+            var player = new YT.Player('player', {
+                height: window.innerHeight,
+                width: window.innerWidth,
+                videoId: getRandomVideoId(),
+                playerVars: {
+                    'autoplay': 1
+                },
+                events: {
+                    'onReady': onPlayerReady
+                }
+            });
+
+            // Redimensiona o player quando a janela for redimensionada
+            window.onresize = function () {
+                player.setSize(window.innerWidth, window.innerHeight);
+            }
+
+            function onPlayerReady(event) {
+                event.target.playVideo();
+            }
+        }
+    </script>
+</body>
+
+</html>
